@@ -19,108 +19,235 @@ namespace BiometricApp
     public partial class capture : Form, DPFP.Capture.EventHandler
     {
         private DPFP.Capture.Capture Capturer;
-        public string StudentID = "";
-        public string Lastname = "";
+
+        public string EmployeeNumber = "";
+        public string LastName = "";
         public string FirstName = "";
-        public string Middlename = "";
-        public string YearLevel = "";
-        public string Course = "";
+        public string Role = "";
+
+        public class ScheduleItem
+        {
+            public string DayOfWeek { get; set; }
+            public TimeSpan TimeIn { get; set; }
+            public TimeSpan TimeOut { get; set; }
+        }
+
+        protected List<ScheduleItem> GetSchedulesForDatabase()
+        {
+            List<ScheduleItem> schedules = new List<ScheduleItem>();
+
+            foreach (DataGridViewRow row in schedPreview.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                schedules.Add(new ScheduleItem
+                {
+                    DayOfWeek = Convert.ToString(row.Cells["DayOfWeek"].Value),
+                    TimeIn = row.Cells["TimeIn"].Tag is TimeSpan ti ? ti : TimeSpan.Zero,
+                    TimeOut = row.Cells["TimeOut"].Tag is TimeSpan to ? to : TimeSpan.Zero
+                });
+            }
+
+            return schedules;
+        }
+
+
+
+        private void SetupScheduleGrid()
+        {
+            schedPreview.Columns.Clear();
+
+            schedPreview.Columns.Add("DayOfWeek", "Day Of Week");
+            schedPreview.Columns.Add("TimeIn", "Time In");
+            schedPreview.Columns.Add("TimeOut", "Time Out");
+
+            DataGridViewButtonColumn btnRemove = new DataGridViewButtonColumn();
+            btnRemove.Name = "Action";
+            btnRemove.HeaderText = "Action";
+            btnRemove.Text = "Remove";
+            btnRemove.UseColumnTextForButtonValue = true;
+
+            schedPreview.Columns.Add(btnRemove);
+        }
+
+        private void addSchedBtn_Click(object sender, EventArgs e)
+        {
+            // Validate day selection
+            if (cmbDayOfWeek.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a day.");
+                return;
+            }
+
+            // Validate time range
+            if (timeOut.Value <= timeIn.Value)
+            {
+                MessageBox.Show("Time Out must be later than Time In.");
+                return;
+            }
+
+            // Check for overlapping schedules (same day)
+            foreach (DataGridViewRow row in schedPreview.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                string existingDay = Convert.ToString(row.Cells["DayOfWeek"].Value);
+                if (existingDay != cmbDayOfWeek.Text)
+                    continue;
+
+                TimeSpan existingIn = (TimeSpan)row.Cells["TimeIn"].Tag;
+                TimeSpan existingOut = (TimeSpan)row.Cells["TimeOut"].Tag;
+
+                TimeSpan newIn = timeIn.Value.TimeOfDay;
+                TimeSpan newOut = timeOut.Value.TimeOfDay;
+
+                if (newIn < existingOut && newOut > existingIn)
+                {
+                    MessageBox.Show(
+                        "Schedule time overlaps with an existing schedule for this day.",
+                        "Schedule Conflict",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    return;
+                }
+            }
+
+            // ADD ROW TO DATAGRIDVIEW (TEMP STORAGE)
+            schedPreview.Rows.Add(
+                cmbDayOfWeek.Text,
+                timeIn.Value.ToShortTimeString(),
+                timeOut.Value.ToShortTimeString()
+            );
+
+            // STORE REAL TIME VALUES IN TAG (IMPORTANT)
+            int lastRow = schedPreview.Rows.Count - 1;
+            schedPreview.Rows[lastRow].Cells["TimeIn"].Tag = timeIn.Value.TimeOfDay;
+            schedPreview.Rows[lastRow].Cells["TimeOut"].Tag = timeOut.Value.TimeOfDay;
+
+            // OPTIONAL UX CLEANUP
+            cmbDayOfWeek.SelectedIndex = -1;
+            timeIn.Value = DateTime.Today;
+            timeOut.Value = DateTime.Today;
+        }
+
+        private void schedPreview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (schedPreview.Columns[e.ColumnIndex].Name == "Action")
+            {
+                DialogResult result = MessageBox.Show(
+                    "Remove this schedule?",
+                    "Confirm",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    schedPreview.Rows.RemoveAt(e.RowIndex);
+                }
+            }
+        }
+
+        private void validateScan()
+        {
+            bool isReady =
+            !string.IsNullOrWhiteSpace(txtEmployeeNumber.Text) &&
+            !string.IsNullOrWhiteSpace(txtFirstName.Text) &&
+            !string.IsNullOrWhiteSpace(txtLastName.Text) &&
+            cmbRole.SelectedIndex != -1 &&
+            schedPreview.Rows.Count > 0;
+
+            start_scan.Visible = isReady;
+        }
+
+
+        private void closebtn_Click(object sender, EventArgs e)
+        {
+            Stop();
+            Close();
+        }
+
+        private void testbtn_Click(object sender, EventArgs e)
+        {
+            List<ScheduleItem> schedules = GetSchedulesForDatabase();
+
+            MessageBox.Show(
+                $"Schedules collected: {schedules.Count}"
+            );
+        }
 
         public capture()
         {
             InitializeComponent();
+            SetupScheduleGrid();
 
-            student_id.KeyPress += student_id_KeyPress;
+            timeIn.Format = DateTimePickerFormat.Custom;
+            timeIn.CustomFormat = "hh:mm tt";
+            timeIn.ShowUpDown = true;
 
+            timeOut.Format = DateTimePickerFormat.Custom;
+            timeOut.CustomFormat = "hh:mm tt";
+            timeOut.ShowUpDown = true;
 
-            // Populate the ComboBox with items
-            yearLevel.Items.Add("Select your year level...");
-            yearLevel.SelectedIndex = 0;
-            yearLevel.SelectedIndexChanged += yearLevel_SelectedIndexChanged;
-            yearLevel.Items.Add("First Year");
-            yearLevel.Items.Add("Second Year");
-            yearLevel.Items.Add("Third Year");
-            yearLevel.Items.Add("Fourth Year");
-
-            course.Items.Add("Select your course/program...");
-            course.SelectedIndex = 0;
-            course.SelectedIndexChanged += course_SelectedIndexChanged;
-            course.Items.Add("BSIT");
-            course.Items.Add("BSOA");
-            course.Items.Add("BSHM");
-            course.Items.Add("BSeD");
-            course.Items.Add("PTCP");
+            start_scan.Visible = false;
         }
 
-        private void student_id_KeyPress(object sender, KeyPressEventArgs e)
+        private void focusEmployeeID(object sender, EventArgs e)
         {
-            // Allow numeric digits, backspace, and decimal point
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.')
+            txtEmployeeNumber.Focus();
+        }
+
+        private void focusLastName(object sender, EventArgs e)
+        {
+            txtLastName.Focus();
+        }
+
+        private void focusFirstName(object sender, EventArgs e)
+        {
+            txtFirstName.Focus();
+        }
+
+        private void txtEmployeeID_TextChanged(object sender, EventArgs e)
+        {
+            validateScan();
+        }
+
+        private void txtLastName_TextChanged(object sender, EventArgs e)
+        {
+            validateScan();
+        }
+
+        private void txtFirstName_TextChanged(object sender, EventArgs e)
+        {
+            validateScan();
+        }
+
+        private void cmbRole_TextChanged(object sender, EventArgs e)
+        {
+            validateScan();
+        }
+
+        private void schedPreview_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            validateScan();
+        }
+
+        private void schedPreview_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            validateScan();
+        }
+
+        private void txtEmployeeID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                // Suppress the key press if it's not a digit, backspace, or decimal point
-                e.Handled = true;
-            }
-        }
-
-        private void yearLevel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (yearLevel.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please select a valid option.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                yearLevel.SelectedIndex = -1; // Clear selection
-            }
-        }
-
-        private void course_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (course.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please select a valid option.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                course.SelectedIndex = -1; // Clear selection
-            }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            student_id.Focus();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            lname.Focus();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-            fname.Focus();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-            mname.Focus();
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-            yearLevel.Focus();
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-            course.Focus();
-        }
-
-        private void closebtn_Click(object sender, EventArgs e)
-        {
-            DialogResult res;
-            res = MessageBox.Show("Do you want to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (res == DialogResult.Yes)
-            {
-                this.Close();
-            }
-            else
-            {
-                this.Show();
+                e.Handled = true; // block input
             }
         }
 
@@ -150,53 +277,6 @@ namespace BiometricApp
             }));
         }
 
-        protected void Setstudent_id(string value)
-        {
-            this.Invoke(new Function(delegate ()
-            {
-                student_id.Text = value;
-            }));
-        }
-
-        protected void Setlname(string value)
-        {
-            this.Invoke(new Function(delegate ()
-            {
-                lname.Text = value;
-            }));
-        }
-
-        protected void Setfname(string value)
-        {
-            this.Invoke(new Function(delegate ()
-            {
-                fname.Text = value;
-            }));
-        }
-
-        protected void Setmname(string value)
-        {
-            this.Invoke(new Function(delegate ()
-            {
-                mname.Text = value;
-            }));
-        }
-
-        protected void SetyearLevel(string value)
-        {
-            this.Invoke(new Function(delegate ()
-            {
-                yearLevel.Text = value;
-            }));
-        }
-
-        protected void Setcourse(string value)
-        {
-            this.Invoke(new Function(delegate ()
-            {
-                course.Text = value;
-            }));
-        }
 
         protected virtual void Init()
         {
@@ -337,53 +417,13 @@ namespace BiometricApp
             Init();
         }
 
-        private void student_id_TextChanged(object sender, EventArgs e)
-        {
-            StudentID = student_id.Text;
-        }
-
-        private void lname_TextChanged(object sender, EventArgs e)
-        {
-            Lastname = lname.Text;
-        }
-
-        private void fname_TextChanged(object sender, EventArgs e)
-        {
-            FirstName = fname.Text;
-        }
-
-        private void mname_TextChanged(object sender, EventArgs e)
-        {
-            Middlename = mname.Text;
-        }
-
-        private void yearLevel_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            YearLevel = yearLevel.Text;
-        }
-
-        private void course_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            Course = course.Text;
-        }
+        
 
         public void ClearFields()
         {
             this.Invoke(new Action(() =>
             {
-                student_id.Text = "";
-                lname.Text = "";
-                fname.Text = "";
-                mname.Text = "";
-                yearLevel.SelectedIndex = -1;
-                course.SelectedIndex = -1;
 
-                StudentID = "";
-                Lastname = "";
-                FirstName = "";
-                Middlename = "";
-                YearLevel = "";
-                Course = "";
             }));
         }
 

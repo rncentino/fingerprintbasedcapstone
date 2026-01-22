@@ -16,7 +16,7 @@ namespace BiometricApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new biometricapp());
+            Application.Run(new login());
         }
     }
 }

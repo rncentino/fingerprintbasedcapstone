@@ -63,12 +63,12 @@ namespace BiometricApp
                                 // If fingerprint matches, display student information
                                 MakeReport($"Fingerprint VERIFIED: {myReader["firstname"]} {myReader["lastname"]}");
 
-                                Setstudent_id(myReader["student_id"].ToString());
-                                Setlname(myReader["lastname"].ToString());
-                                Setfname(myReader["firstname"].ToString());
-                                Setmname(myReader["middlename"].ToString());
-                                SetyearLevel(myReader["yearlevel"].ToString());
-                                Setcourse(myReader["course"].ToString());
+                                //Setstudent_id(myReader["student_id"].ToString());
+                                //Setlname(myReader["lastname"].ToString());
+                                //Setfname(myReader["firstname"].ToString());
+                                //Setmname(myReader["middlename"].ToString());
+                                //SetyearLevel(myReader["yearlevel"].ToString());
+                                //Setcourse(myReader["course"].ToString());
 
                                 return; // Exit after the first match
                             }
@@ -76,10 +76,10 @@ namespace BiometricApp
 
                         // If no match was found
                         MakeReport("Fingerprint NOT VERIFIED! No matching record found.");
-                        Setstudent_id("NO DATA FOUND!");
-                        Setlname("NO DATA FOUND!");
-                        Setfname("NO DATA FOUND!");
-                        Setmname("NO DATA FOUND!");
+                        //Setstudent_id("NO DATA FOUND!");
+                        //Setlname("NO DATA FOUND!");
+                        //Setfname("NO DATA FOUND!");
+                        //Setmname("NO DATA FOUND!");
                     }
                 }
             }

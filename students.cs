@@ -22,16 +22,6 @@ namespace BiometricApp
 
         private DPFP.Template Template;
 
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-            (
-                int nLeft,
-                int nTop,
-                int nRight,
-                int nBottom,
-                int nWidthEllipse,
-                int nLengthEllipse
-            );
 
         public students()
         {
@@ -43,11 +33,6 @@ namespace BiometricApp
         {
             LoadStudents();
             dataGridViewStudents.CellClick += dataGridViewStudents_CellClick;
-
-            addstudentsbtn.Region = Region.FromHrgn(CreateRoundRectRgn(
-                0, 0, addstudentsbtn.Width, addstudentsbtn.Height, 5, 5));
-            VerifyBtn.Region = Region.FromHrgn(CreateRoundRectRgn(
-                0, 0, VerifyBtn.Width, VerifyBtn.Height, 5, 5));
         }
 
         public void LoadStudents()

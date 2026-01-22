@@ -90,7 +90,7 @@ namespace BiometricApp
                                         try
                                         {
                                             string MyConnection1 = "datasource=localhost;username=root;password=123456";
-                                            string Query1 = "INSERT INTO biometricapp.students (user_id, student_id, lastname, firstname, middlename, yearlevel, course, fingerprint) VALUES (@userId, '"+ StudentID + "','"+Lastname+"','" + FirstName+"','"+Middlename+"','"+ YearLevel +"','"+Course+"', @finger)";
+                                            string Query1 = "INSERT INTO biometricapp.students (user_id, student_id, lastname, firstname, middlename, yearlevel, course, fingerprint) VALUES (@userId,', @finger)";
                                             MySqlConnection MyConn1 = new MySqlConnection(MyConnection1);
                                             MySqlCommand MyCommand1 = new MySqlCommand(Query1, MyConn1);
 
@@ -149,12 +149,12 @@ namespace BiometricApp
         private void ClearForm()
         {
             // Reset fields in memory
-            StudentID = "";
-            FirstName = "";
-            Lastname = "";
-            Middlename = "";
-            YearLevel = "";
-            Course = "";
+            //StudentID = "";
+            //FirstName = "";
+            //Lastname = "";
+            //Middlename = "";
+            //YearLevel = "";
+            //Course = "";
 
             // Clear UI fields in the capture form
             if (this is capture)
