@@ -251,7 +251,37 @@ namespace BiometricApp
             }
         }
 
+        protected void SetEmployeeNumber(string employeeNumber)
+        {
+            this.Invoke(new Action(() =>
+            {
+                txtEmployeeNumber.Text = employeeNumber;
+            }));
+        }
 
+        protected void SetLastName(string LastName)
+        {
+            this.Invoke(new Action(() =>
+            {
+                txtLastName.Text = LastName;
+            }));
+        }
+
+       protected void SetFirstName(string FirstName)
+        {
+            this.Invoke(new Action(() =>
+            {
+                txtFirstName.Text = FirstName;
+            }));
+        }
+
+        protected void SetRole(string role)
+        {
+            this.Invoke(new Action(() =>
+            {
+                cmbRole.Text = role;
+            }));
+        }
 
         protected void SetPrompt(string prompt)
         {
@@ -417,15 +447,22 @@ namespace BiometricApp
             Init();
         }
 
-        
-
         public void ClearFields()
         {
             this.Invoke(new Action(() =>
             {
+                txtEmployeeNumber.Text = "";
+                txtLastName.Text = "";
+                txtFirstName.Text = "";
+                cmbRole.SelectedIndex = -1;
+                schedPreview.Rows.Clear();
 
+                EmployeeNumber = "";
+                LastName = "";
+                FirstName = "";
+                Role = "";
+                start_scan.Visible = false;
             }));
         }
-
     }
 }

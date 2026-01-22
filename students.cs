@@ -174,6 +174,7 @@ namespace BiometricApp
             }));
         }
 
+        /*
         private void addstudentsbtn_Click(object sender, EventArgs e)
         {
             enroll Enfrm = new enroll();
@@ -181,11 +182,19 @@ namespace BiometricApp
             Enfrm.ShowDialog();
 
         }
+        */
 
         private void VerifyBtn_Click(object sender, EventArgs e)
         {
             verify VeFrm = new verify();
             VeFrm.Verify(Template);
+        }
+
+        private void registrationBtn_Click(object sender, EventArgs e)
+        {
+            enroll Enfrm = new enroll();
+            Enfrm.OnTemplate += this.OnTemplate;
+            Enfrm.ShowDialog();
         }
     }
 }

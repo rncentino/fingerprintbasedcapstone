@@ -71,7 +71,6 @@
             this.addstudentsbtn.TabIndex = 22;
             this.addstudentsbtn.Text = "Enroll";
             this.addstudentsbtn.UseVisualStyleBackColor = false;
-            this.addstudentsbtn.Click += new System.EventHandler(this.addstudentsbtn_Click);
             // 
             // dataGridViewStudents
             // 
@@ -152,6 +151,7 @@
             this.registrationBtn.Size = new System.Drawing.Size(40, 40);
             this.registrationBtn.TabIndex = 1003;
             this.registrationBtn.UseVisualStyleBackColor = false;
+            this.registrationBtn.Click += new System.EventHandler(this.registrationBtn_Click);
             // 
             // closebtn
             // 
