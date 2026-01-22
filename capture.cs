@@ -20,10 +20,10 @@ namespace BiometricApp
     {
         private DPFP.Capture.Capture Capturer;
 
-        public string EmployeeNumber = "";
-        public string LastName = "";
-        public string FirstName = "";
-        public string Role = "";
+        public string EmployeeNumber { get; private set; } = string.Empty;
+        public string FirstName { get; private set; } = string.Empty;
+        public string LastName { get; private set; } = string.Empty;
+        public string Role { get; private set; } = string.Empty;
 
         public class ScheduleItem
         {
@@ -445,6 +445,20 @@ namespace BiometricApp
         private void Form2_Load(object sender, EventArgs e)
         {
             Init();
+        }
+
+        protected void SyncEmployeeData()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(SyncEmployeeData));
+                return;
+            }
+
+            EmployeeNumber = txtEmployeeNumber.Text.Trim();
+            FirstName = txtFirstName.Text.Trim();
+            LastName = txtLastName.Text.Trim();
+            Role = cmbRole.Text.Trim();
         }
 
         public void ClearFields()

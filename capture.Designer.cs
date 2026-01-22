@@ -35,7 +35,6 @@
             this.Statuslabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.start_scan = new System.Windows.Forms.Button();
-            this.testbtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtEmployeeNumber = new System.Windows.Forms.TextBox();
@@ -43,6 +42,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.timeOut = new System.Windows.Forms.DateTimePicker();
             this.timeIn = new System.Windows.Forms.DateTimePicker();
+            this.addSchedBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -62,7 +62,6 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.schedPreview = new System.Windows.Forms.DataGridView();
-            this.addSchedBtn = new System.Windows.Forms.Button();
             this.closebtn = new System.Windows.Forms.Button();
             this.fImage = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
@@ -79,20 +78,20 @@
             // 
             // Prompt
             // 
-            this.Prompt.BackColor = System.Drawing.SystemColors.Control;
+            this.Prompt.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Prompt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Prompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.Prompt.Location = new System.Drawing.Point(460, 248);
+            this.Prompt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Prompt.Location = new System.Drawing.Point(16, 495);
             this.Prompt.Name = "Prompt";
             this.Prompt.ReadOnly = true;
-            this.Prompt.Size = new System.Drawing.Size(194, 13);
+            this.Prompt.Size = new System.Drawing.Size(428, 20);
             this.Prompt.TabIndex = 22;
             // 
             // StatusText
             // 
             this.StatusText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.StatusText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.StatusText.Location = new System.Drawing.Point(460, 276);
+            this.StatusText.Location = new System.Drawing.Point(457, 248);
             this.StatusText.Multiline = true;
             this.StatusText.Name = "StatusText";
             this.StatusText.ReadOnly = true;
@@ -102,7 +101,7 @@
             // Statuslabel
             // 
             this.Statuslabel.AutoSize = true;
-            this.Statuslabel.Location = new System.Drawing.Point(13, 499);
+            this.Statuslabel.Location = new System.Drawing.Point(457, 457);
             this.Statuslabel.Name = "Statuslabel";
             this.Statuslabel.Size = new System.Drawing.Size(56, 13);
             this.Statuslabel.TabIndex = 24;
@@ -121,30 +120,13 @@
             this.start_scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start_scan.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
             this.start_scan.ForeColor = System.Drawing.Color.White;
-            this.start_scan.Location = new System.Drawing.Point(460, 486);
+            this.start_scan.Location = new System.Drawing.Point(457, 485);
             this.start_scan.Name = "start_scan";
             this.start_scan.Size = new System.Drawing.Size(194, 38);
             this.start_scan.TabIndex = 25;
             this.start_scan.Text = "Start Scan";
             this.start_scan.UseVisualStyleBackColor = false;
             this.start_scan.Click += new System.EventHandler(this.start_scan_Click);
-            // 
-            // testbtn
-            // 
-            this.testbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(252)))), ((int)(((byte)(132)))));
-            this.testbtn.FlatAppearance.BorderSize = 0;
-            this.testbtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(169)))), ((int)(((byte)(92)))));
-            this.testbtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(169)))), ((int)(((byte)(92)))));
-            this.testbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.testbtn.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.testbtn.ForeColor = System.Drawing.Color.White;
-            this.testbtn.Location = new System.Drawing.Point(294, 486);
-            this.testbtn.Name = "testbtn";
-            this.testbtn.Size = new System.Drawing.Size(150, 38);
-            this.testbtn.TabIndex = 129;
-            this.testbtn.Text = "TEST SCHED";
-            this.testbtn.UseVisualStyleBackColor = false;
-            this.testbtn.Click += new System.EventHandler(this.testbtn_Click);
             // 
             // panel1
             // 
@@ -236,6 +218,23 @@
             this.timeIn.Name = "timeIn";
             this.timeIn.Size = new System.Drawing.Size(100, 23);
             this.timeIn.TabIndex = 6;
+            // 
+            // addSchedBtn
+            // 
+            this.addSchedBtn.BackColor = System.Drawing.Color.Transparent;
+            this.addSchedBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("addSchedBtn.BackgroundImage")));
+            this.addSchedBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.addSchedBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addSchedBtn.FlatAppearance.BorderSize = 0;
+            this.addSchedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addSchedBtn.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addSchedBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.addSchedBtn.Location = new System.Drawing.Point(371, 3);
+            this.addSchedBtn.Name = "addSchedBtn";
+            this.addSchedBtn.Size = new System.Drawing.Size(29, 29);
+            this.addSchedBtn.TabIndex = 115;
+            this.addSchedBtn.UseVisualStyleBackColor = false;
+            this.addSchedBtn.Click += new System.EventHandler(this.addSchedBtn_Click);
             // 
             // label9
             // 
@@ -474,23 +473,6 @@
             this.schedPreview.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.schedPreview_RowsAdded);
             this.schedPreview.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.schedPreview_RowsRemoved);
             // 
-            // addSchedBtn
-            // 
-            this.addSchedBtn.BackColor = System.Drawing.Color.Transparent;
-            this.addSchedBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("addSchedBtn.BackgroundImage")));
-            this.addSchedBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.addSchedBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addSchedBtn.FlatAppearance.BorderSize = 0;
-            this.addSchedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addSchedBtn.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addSchedBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.addSchedBtn.Location = new System.Drawing.Point(371, 3);
-            this.addSchedBtn.Name = "addSchedBtn";
-            this.addSchedBtn.Size = new System.Drawing.Size(29, 29);
-            this.addSchedBtn.TabIndex = 115;
-            this.addSchedBtn.UseVisualStyleBackColor = false;
-            this.addSchedBtn.Click += new System.EventHandler(this.addSchedBtn_Click);
-            // 
             // closebtn
             // 
             this.closebtn.BackColor = System.Drawing.Color.Transparent;
@@ -513,7 +495,7 @@
             this.fImage.BackgroundImage = global::BiometricApp.Properties.Resources.fingerprint;
             this.fImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fImage.Location = new System.Drawing.Point(460, 39);
+            this.fImage.Location = new System.Drawing.Point(457, 39);
             this.fImage.Name = "fImage";
             this.fImage.Size = new System.Drawing.Size(194, 194);
             this.fImage.TabIndex = 5;
@@ -525,7 +507,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(670, 538);
-            this.Controls.Add(this.testbtn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel6);
@@ -579,7 +560,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button start_scan;
         private System.Windows.Forms.Button closebtn;
-        private System.Windows.Forms.Button testbtn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEmployeeNumber;
