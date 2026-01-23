@@ -1,9 +1,10 @@
 ﻿using DPFP;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Data.Common;
 using System.Drawing;
 using System.Linq;
@@ -18,16 +19,110 @@ namespace BiometricApp
 
     public partial class EmployeeRegistrationForm : Form
     {
-        private string MyConnection = "server=localhost;database=biometricapp;user=root;password=123456;";
-
         private DPFP.Template Template;
-
 
         public EmployeeRegistrationForm()
         {
             InitializeComponent();
+
         }
-                
+
+        private void LoadEmployees()
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                try
+                {
+                    string query = @"SELECT 
+                                EmployeeID,
+                                EmployeeNumber,
+                                LastName,
+                                FirstName,
+                                Role
+                             FROM Employees";
+
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgvEmployees.DataSource = dt;
+
+                    dgvEmployees.Columns["EmployeeID"].Visible = false; // 👈 hidden but usable
+                    dgvEmployees.Columns["EmployeeNumber"].HeaderText = "Employee No";
+                    dgvEmployees.Columns["LastName"].HeaderText = "Last Name";
+                    dgvEmployees.Columns["FirstName"].HeaderText = "First Name";
+
+                    AddDeleteButton();
+
+                }
+                catch (Exception ex)
+                {
+                MessageBox.Show("Error loading data: " + ex.Message);
+                }
+            }
+        }
+
+        private void AddDeleteButton()
+        {
+            if (dgvEmployees.Columns["Delete"] != null) return;
+
+            DataGridViewButtonColumn deleteBtn = new DataGridViewButtonColumn();
+            deleteBtn.Name = "Delete";
+            deleteBtn.HeaderText = "Delete";
+            deleteBtn.Text = "Delete";
+            deleteBtn.UseColumnTextForButtonValue = true;
+
+            dgvEmployees.Columns.Add(deleteBtn);
+        }
+
+
+        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dgvEmployees.Columns[e.ColumnIndex].Name == "Delete")
+            {
+                int employeeId = Convert.ToInt32(
+                    dgvEmployees.Rows[e.RowIndex].Cells["EmployeeID"].Value);
+
+                DeleteEmployee(employeeId);
+            }
+        }
+
+        private void DeleteEmployee(int employeeId)
+        {
+            DialogResult result = MessageBox.Show(
+                "Deleting this employee will also remove the fingerprint.\n\nContinue?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes) return;
+
+            string connStr = ConfigurationManager
+                .ConnectionStrings["MyConn"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(@"
+            DELETE FROM Fingerprints WHERE EmployeeID = @id;
+            DELETE FROM Employees WHERE EmployeeID = @id;
+        ", conn);
+
+                cmd.Parameters.AddWithValue("@id", employeeId);
+                cmd.ExecuteNonQuery();
+            }
+
+            LoadEmployees(); // 🔄 refresh
+        }
+
+
+
+
         private void OnTemplate(DPFP.Template template)
         {
             this.Invoke(new Function(delegate ()
@@ -55,6 +150,8 @@ namespace BiometricApp
             enroll Enfrm = new enroll();
             Enfrm.OnTemplate += this.OnTemplate;
             Enfrm.ShowDialog();
+
+            LoadEmployees();
         }
 
         private void closebtn_Click(object sender, EventArgs e)
@@ -86,5 +183,11 @@ namespace BiometricApp
         {
             SearchTxt.Focus();
         }
+
+        private void EmployeeRegistrationForm_Load(object sender, EventArgs e)
+        {
+            LoadEmployees();
+        }
+
     }
 }
