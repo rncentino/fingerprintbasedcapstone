@@ -81,16 +81,16 @@
             this.Prompt.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Prompt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Prompt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Prompt.Location = new System.Drawing.Point(16, 495);
+            this.Prompt.Location = new System.Drawing.Point(32, 495);
             this.Prompt.Name = "Prompt";
             this.Prompt.ReadOnly = true;
-            this.Prompt.Size = new System.Drawing.Size(428, 20);
+            this.Prompt.Size = new System.Drawing.Size(402, 20);
             this.Prompt.TabIndex = 22;
             // 
             // StatusText
             // 
             this.StatusText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.StatusText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.StatusText.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusText.Location = new System.Drawing.Point(457, 248);
             this.StatusText.Multiline = true;
             this.StatusText.Name = "StatusText";
@@ -439,7 +439,7 @@
             this.panel9.Controls.Add(this.schedPreview);
             this.panel9.Location = new System.Drawing.Point(16, 239);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(428, 231);
+            this.panel9.Size = new System.Drawing.Size(428, 243);
             this.panel9.TabIndex = 128;
             // 
             // label6
@@ -461,13 +461,13 @@
             this.schedPreview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.schedPreview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.schedPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.schedPreview.Location = new System.Drawing.Point(20, 113);
+            this.schedPreview.Location = new System.Drawing.Point(16, 113);
             this.schedPreview.MultiSelect = false;
             this.schedPreview.Name = "schedPreview";
             this.schedPreview.ReadOnly = true;
             this.schedPreview.RowHeadersVisible = false;
             this.schedPreview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.schedPreview.Size = new System.Drawing.Size(400, 89);
+            this.schedPreview.Size = new System.Drawing.Size(400, 113);
             this.schedPreview.TabIndex = 116;
             this.schedPreview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.schedPreview_CellContentClick);
             this.schedPreview.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.schedPreview_RowsAdded);

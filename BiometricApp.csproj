@@ -262,11 +262,11 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="students.cs">
+    <Compile Include="EmployeeRegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="students.Designer.cs">
-      <DependentUpon>students.cs</DependentUpon>
+    <Compile Include="EmployeeRegistrationForm.Designer.cs">
+      <DependentUpon>EmployeeRegistrationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="updateActivity.cs">
       <SubType>Form</SubType>
@@ -341,8 +341,8 @@
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="students.resx">
-      <DependentUpon>students.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeeRegistrationForm.resx">
+      <DependentUpon>EmployeeRegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="updateActivity.resx">
       <DependentUpon>updateActivity.cs</DependentUpon>
@@ -403,6 +403,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fingerprint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

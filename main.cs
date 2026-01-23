@@ -95,7 +95,7 @@ namespace BiometricApp
         private void studentsbtn_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
-            loadform(new students());
+            loadform(new EmployeeRegistrationForm());
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
