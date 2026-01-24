@@ -28,6 +28,8 @@ namespace BiometricApp
         public TouchTrackApp()
         {
             InitializeComponent();
+            Init();
+            StartCapture();
         }
 
         
@@ -321,6 +323,9 @@ ORDER BY a.AttendanceDate DESC, a.TimeIn DESC";
                 dgvAttendanceLog.Columns["TimeIn"].HeaderText = "TIME IN";
                 dgvAttendanceLog.Columns["TimeOut"].HeaderText = "TIME OUT";
                 dgvAttendanceLog.Columns["Status"].HeaderText = "STATUS";
+
+                dgvAttendanceLog.Columns["TimeIn"].DefaultCellStyle.Format = "hh:mm tt";
+                dgvAttendanceLog.Columns["TimeOut"].DefaultCellStyle.Format = "hh:mm tt";
 
             }
             catch (Exception ex)
