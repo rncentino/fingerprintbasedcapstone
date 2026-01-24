@@ -268,6 +268,12 @@
     <Compile Include="EmployeeRegistrationForm.Designer.cs">
       <DependentUpon>EmployeeRegistrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TouchTrackApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TouchTrackApp.Designer.cs">
+      <DependentUpon>TouchTrackApp.cs</DependentUpon>
+    </Compile>
     <Compile Include="updateActivity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeRegistrationForm.resx">
       <DependentUpon>EmployeeRegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TouchTrackApp.resx">
+      <DependentUpon>TouchTrackApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="updateActivity.resx">
       <DependentUpon>updateActivity.cs</DependentUpon>

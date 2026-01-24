@@ -320,17 +320,7 @@ namespace BiometricApp
         {
             MakeReport((CaptureFeedback == DPFP.Capture.CaptureFeedback.Good) ? "Good fingerprint sample." : "Poor fingerprint sample.");
         }
-/*
-        private void verify_Load(object sender, EventArgs e)
-        {
-            StartCapture();
-        }
 
-        private void verify_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            StopCapture();
-        }
-*/
         private void LoadEventDetails()
         {
             try

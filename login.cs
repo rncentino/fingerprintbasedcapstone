@@ -90,20 +90,14 @@ namespace BiometricApp
 
         private void TouchTrackAppBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string conn = ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
+            this.Hide();
 
-                using (SqlConnection con = new SqlConnection(conn))
-                {
-                    con.Open();
-                    MessageBox.Show("Connection Successful!");
-                }
-            }
-            catch (Exception ex)
+            using (TouchTrackApp touchTrackApp = new TouchTrackApp())
             {
-                MessageBox.Show("Connection Failed!\n\n" + ex.Message);
+                touchTrackApp.ShowDialog();
             }
+
+            this.Close();
         }
 
         public void ClearFields()
