@@ -235,7 +235,7 @@ namespace BiometricApp
                                 }
 
                                 // Check if 1 hour has passed
-                                if ((DateTime.Now - timeIn).TotalMinutes < 60)
+                                if ((DateTime.Now - timeIn).TotalMinutes < 1)
                                 {
                                     MessageBox.Show("You just timed in. Please try again after 1 hour.");
                                     return;

@@ -147,5 +147,10 @@ namespace BiometricApp
         {
             logoutbtn.BackColor = dangerHover;
         }
+
+        private void dashboard_Load(object sender, EventArgs e)
+        {
+            this.Activate();
+        }
     }
 }
