@@ -163,11 +163,11 @@
     <Compile Include="addactivity.Designer.cs">
       <DependentUpon>addactivity.cs</DependentUpon>
     </Compile>
-    <Compile Include="AttendanceForm.cs">
+    <Compile Include="Reports.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AttendanceForm.Designer.cs">
-      <DependentUpon>AttendanceForm.cs</DependentUpon>
+    <Compile Include="Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
     <Compile Include="biometricapp.cs">
       <SubType>Form</SubType>
@@ -289,8 +289,8 @@
     <EmbeddedResource Include="addactivity.resx">
       <DependentUpon>addactivity.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AttendanceForm.resx">
-      <DependentUpon>AttendanceForm.cs</DependentUpon>
+    <EmbeddedResource Include="Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="biometricapp.resx">
       <DependentUpon>biometricapp.cs</DependentUpon>
@@ -415,6 +415,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crowd-of-users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downloads.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

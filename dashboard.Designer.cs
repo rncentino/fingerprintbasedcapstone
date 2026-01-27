@@ -102,7 +102,7 @@
             this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmployee.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.btnEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.btnEmployee.Location = new System.Drawing.Point(0, 280);
+            this.btnEmployee.Location = new System.Drawing.Point(0, 240);
             this.btnEmployee.Name = "btnEmployee";
             this.btnEmployee.Size = new System.Drawing.Size(200, 40);
             this.btnEmployee.TabIndex = 15;
@@ -120,12 +120,12 @@
             this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttendance.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.btnAttendance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.btnAttendance.Location = new System.Drawing.Point(0, 240);
+            this.btnAttendance.Location = new System.Drawing.Point(0, 280);
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(200, 40);
             this.btnAttendance.TabIndex = 14;
             this.btnAttendance.TabStop = false;
-            this.btnAttendance.Text = "  Attendance Log";
+            this.btnAttendance.Text = "  Reports";
             this.btnAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAttendance.UseVisualStyleBackColor = false;
             this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);

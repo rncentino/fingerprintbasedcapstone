@@ -130,10 +130,10 @@ namespace BiometricApp
                 using (SqlConnection con = new SqlConnection(conn))
                 {
                     string query = @"
-                    SELECT 1
-                    FROM AdminUsers
-                    WHERE Username = @username
-                    AND PasswordHash = @passwordHash";
+                        SELECT COUNT(*) 
+                        FROM AdminUsers
+                        WHERE Username = @username
+                        AND PasswordHash = @passwordHash";
 
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -141,9 +141,6 @@ namespace BiometricApp
 
                         byte[] hash = HashPassword(password);
                         cmd.Parameters.Add("@passwordHash", SqlDbType.VarBinary, hash.Length).Value = hash;
-                        //cmd.Parameters.Add("@username", SqlDbType.NVarChar, 50).Value = username;
-                        //cmd.Parameters.Add("@passwordHash", SqlDbType.VarBinary, 32)
-                        //.Value = HashPassword(password);
 
                         con.Open();
 
@@ -152,8 +149,6 @@ namespace BiometricApp
                         if (result == 1)
                         {
                             // ✅ LOGIN SUCCESS
-                            this.Hide();
-
                             dashboard dash = new dashboard();
                             dash.FormClosed += (s, args) =>
                             {
@@ -161,6 +156,7 @@ namespace BiometricApp
                                 ClearFields();
                             };
                             dash.Show();
+                            this.Hide();
 
                         }
                         else

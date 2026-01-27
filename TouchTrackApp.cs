@@ -277,6 +277,8 @@ namespace BiometricApp
                     }
                 }
 
+
+
                 LoadAttendanceLogs(); // refresh DataGridView
             }
             catch (Exception ex)
@@ -296,19 +298,19 @@ namespace BiometricApp
             try
             {
                 string query = @"
-SELECT
-    a.AttendanceID,
-    e.EmployeeNumber,
-    CONCAT(e.LastName, ', ', e.FirstName) AS FullName,
-    e.Role,
-    a.AttendanceDate,
-    a.TimeIn,
-    a.TimeOut,
-    a.Status
-FROM Attendance a
-LEFT JOIN Employees e
-    ON a.EmployeeID = e.EmployeeID
-ORDER BY a.AttendanceDate DESC, a.TimeIn DESC";
+                SELECT
+                a.AttendanceID,
+                e.EmployeeNumber,
+                CONCAT(e.LastName, ', ', e.FirstName) AS FullName,
+                e.Role,
+                a.AttendanceDate,
+                a.TimeIn,
+                a.TimeOut,
+                a.Status
+                FROM Attendance a
+                LEFT JOIN Employees e
+                ON a.EmployeeID = e.EmployeeID
+                ORDER BY a.AttendanceDate DESC, a.TimeIn DESC";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();

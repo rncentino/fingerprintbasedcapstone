@@ -58,7 +58,7 @@
             // 
             this.Statuslabel.AutoSize = true;
             this.Statuslabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.Statuslabel.Location = new System.Drawing.Point(20, 500);
+            this.Statuslabel.Location = new System.Drawing.Point(20, 295);
             this.Statuslabel.Name = "Statuslabel";
             this.Statuslabel.Size = new System.Drawing.Size(56, 13);
             this.Statuslabel.TabIndex = 30;
@@ -70,7 +70,7 @@
             this.StatusText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.StatusText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.StatusText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.StatusText.Location = new System.Drawing.Point(20, 293);
+            this.StatusText.Location = new System.Drawing.Point(20, 314);
             this.StatusText.Multiline = true;
             this.StatusText.Name = "StatusText";
             this.StatusText.ReadOnly = true;
@@ -93,7 +93,7 @@
             // 
             this.fImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fImage.BackgroundImage")));
             this.fImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fImage.Location = new System.Drawing.Point(20, 38);
+            this.fImage.Location = new System.Drawing.Point(20, 39);
             this.fImage.Name = "fImage";
             this.fImage.Size = new System.Drawing.Size(250, 250);
             this.fImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -123,15 +123,15 @@
             this.dgvAttendanceLog.AllowUserToResizeColumns = false;
             this.dgvAttendanceLog.AllowUserToResizeRows = false;
             this.dgvAttendanceLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvAttendanceLog.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dgvAttendanceLog.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.dgvAttendanceLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAttendanceLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvAttendanceLog.Location = new System.Drawing.Point(310, 40);
+            this.dgvAttendanceLog.Location = new System.Drawing.Point(310, 39);
             this.dgvAttendanceLog.Name = "dgvAttendanceLog";
             this.dgvAttendanceLog.ReadOnly = true;
             this.dgvAttendanceLog.RowHeadersVisible = false;
             this.dgvAttendanceLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAttendanceLog.Size = new System.Drawing.Size(670, 455);
+            this.dgvAttendanceLog.Size = new System.Drawing.Size(670, 476);
             this.dgvAttendanceLog.TabIndex = 1007;
             // 
             // TouchTrackApp

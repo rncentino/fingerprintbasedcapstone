@@ -95,7 +95,7 @@ namespace BiometricApp
         private void btnAttendance_Click(object sender, EventArgs e)
         {
             SetActiveButton(btnAttendance);
-            LoadForm(new AttendanceForm());
+            LoadForm(new Reports());
         }
 
         private void btnEmployee_Click(object sender, EventArgs e)
