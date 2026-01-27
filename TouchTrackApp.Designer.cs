@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TouchTrackApp));
             this.panel1 = new System.Windows.Forms.Panel();
             this.Statuslabel = new System.Windows.Forms.Label();
@@ -36,6 +37,8 @@
             this.fImage = new System.Windows.Forms.PictureBox();
             this.closebtn = new System.Windows.Forms.Button();
             this.dgvAttendanceLog = new System.Windows.Forms.DataGridView();
+            this.dateTimeToday = new System.Windows.Forms.Label();
+            this.timerDateTime = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttendanceLog)).BeginInit();
@@ -58,19 +61,20 @@
             // 
             this.Statuslabel.AutoSize = true;
             this.Statuslabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.Statuslabel.Location = new System.Drawing.Point(20, 295);
+            this.Statuslabel.Location = new System.Drawing.Point(17, 301);
             this.Statuslabel.Name = "Statuslabel";
             this.Statuslabel.Size = new System.Drawing.Size(56, 13);
             this.Statuslabel.TabIndex = 30;
             this.Statuslabel.Text = "[STATUS]";
+            this.Statuslabel.Visible = false;
             // 
             // StatusText
             // 
             this.StatusText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.StatusText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.StatusText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.StatusText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StatusText.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.StatusText.Location = new System.Drawing.Point(20, 314);
+            this.StatusText.Location = new System.Drawing.Point(20, 313);
             this.StatusText.Multiline = true;
             this.StatusText.Name = "StatusText";
             this.StatusText.ReadOnly = true;
@@ -81,19 +85,19 @@
             // 
             this.Prompt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.Prompt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Prompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.Prompt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Prompt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.Prompt.Location = new System.Drawing.Point(20, 20);
             this.Prompt.Name = "Prompt";
             this.Prompt.ReadOnly = true;
-            this.Prompt.Size = new System.Drawing.Size(250, 13);
+            this.Prompt.Size = new System.Drawing.Size(250, 15);
             this.Prompt.TabIndex = 28;
             // 
             // fImage
             // 
             this.fImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fImage.BackgroundImage")));
             this.fImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fImage.Location = new System.Drawing.Point(20, 39);
+            this.fImage.Location = new System.Drawing.Point(20, 48);
             this.fImage.Name = "fImage";
             this.fImage.Size = new System.Drawing.Size(250, 250);
             this.fImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -110,7 +114,7 @@
             this.closebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closebtn.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closebtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.closebtn.Location = new System.Drawing.Point(980, 0);
+            this.closebtn.Location = new System.Drawing.Point(710, 0);
             this.closebtn.Name = "closebtn";
             this.closebtn.Size = new System.Drawing.Size(20, 20);
             this.closebtn.TabIndex = 110;
@@ -126,20 +130,35 @@
             this.dgvAttendanceLog.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.dgvAttendanceLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAttendanceLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvAttendanceLog.Location = new System.Drawing.Point(310, 39);
+            this.dgvAttendanceLog.Location = new System.Drawing.Point(300, 39);
             this.dgvAttendanceLog.Name = "dgvAttendanceLog";
             this.dgvAttendanceLog.ReadOnly = true;
             this.dgvAttendanceLog.RowHeadersVisible = false;
             this.dgvAttendanceLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAttendanceLog.Size = new System.Drawing.Size(670, 476);
+            this.dgvAttendanceLog.Size = new System.Drawing.Size(420, 481);
             this.dgvAttendanceLog.TabIndex = 1007;
+            // 
+            // dateTimeToday
+            // 
+            this.dateTimeToday.AutoSize = true;
+            this.dateTimeToday.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimeToday.Location = new System.Drawing.Point(300, 10);
+            this.dateTimeToday.Name = "dateTimeToday";
+            this.dateTimeToday.Size = new System.Drawing.Size(130, 19);
+            this.dateTimeToday.TabIndex = 1009;
+            this.dateTimeToday.Text = "dateTimeToday";
+            // 
+            // timerDateTime
+            // 
+            this.timerDateTime.Tick += new System.EventHandler(this.timerDateTime_Tick);
             // 
             // TouchTrackApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.ClientSize = new System.Drawing.Size(1000, 530);
+            this.ClientSize = new System.Drawing.Size(730, 530);
+            this.Controls.Add(this.dateTimeToday);
             this.Controls.Add(this.dgvAttendanceLog);
             this.Controls.Add(this.closebtn);
             this.Controls.Add(this.panel1);
@@ -154,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttendanceLog)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -166,5 +186,7 @@
         private System.Windows.Forms.PictureBox fImage;
         private System.Windows.Forms.Button closebtn;
         private System.Windows.Forms.DataGridView dgvAttendanceLog;
+        private System.Windows.Forms.Label dateTimeToday;
+        private System.Windows.Forms.Timer timerDateTime;
     }
 }

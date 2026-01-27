@@ -36,6 +36,7 @@ namespace BiometricApp
 
         private void TouchTrackApp_Load(object sender, EventArgs e)
         {
+            timerDateTime.Start();
             LoadAttendanceLogs();
             StartCapture();
         }
@@ -299,18 +300,20 @@ namespace BiometricApp
             {
                 string query = @"
                 SELECT
-                a.AttendanceID,
-                e.EmployeeNumber,
-                CONCAT(e.LastName, ', ', e.FirstName) AS FullName,
-                e.Role,
-                a.AttendanceDate,
-                a.TimeIn,
-                a.TimeOut,
-                a.Status
-                FROM Attendance a
-                LEFT JOIN Employees e
-                ON a.EmployeeID = e.EmployeeID
-                ORDER BY a.AttendanceDate DESC, a.TimeIn DESC";
+    a.AttendanceID,
+    e.EmployeeNumber,
+    CONCAT(e.LastName, ', ', e.FirstName) AS FullName,
+    e.Role,
+    a.AttendanceDate,
+    a.TimeIn,
+    a.TimeOut,
+    a.Status
+FROM Attendance a
+LEFT JOIN Employees e
+    ON a.EmployeeID = e.EmployeeID
+WHERE a.AttendanceDate >= CAST(GETDATE() AS DATE)
+  AND a.AttendanceDate <  DATEADD(DAY, 1, CAST(GETDATE() AS DATE))
+ORDER BY a.TimeIn DESC";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -318,16 +321,32 @@ namespace BiometricApp
                 dgvAttendanceLog.DataSource = dt;
 
                 dgvAttendanceLog.Columns["AttendanceID"].Visible = false;
-                dgvAttendanceLog.Columns["EmployeeNumber"].HeaderText = "Employee No";
+                dgvAttendanceLog.Columns["EmployeeNumber"].HeaderText = "ID";
                 dgvAttendanceLog.Columns["FullName"].HeaderText = "NAME";
-                dgvAttendanceLog.Columns["Role"].HeaderText = "ROLE";
-                dgvAttendanceLog.Columns["AttendanceDate"].HeaderText = "DATE";
+                dgvAttendanceLog.Columns["Role"].Visible = false;
+                dgvAttendanceLog.Columns["AttendanceDate"].Visible = false;
                 dgvAttendanceLog.Columns["TimeIn"].HeaderText = "TIME IN";
                 dgvAttendanceLog.Columns["TimeOut"].HeaderText = "TIME OUT";
                 dgvAttendanceLog.Columns["Status"].HeaderText = "STATUS";
 
+                dgvAttendanceLog.Columns["EmployeeNumber"].Width = 60;
+                dgvAttendanceLog.Columns["FullName"].Width = 130;
+                dgvAttendanceLog.Columns["TimeIn"].Width = 80;
+                dgvAttendanceLog.Columns["TimeOut"].Width = 80;
+                dgvAttendanceLog.Columns["Status"].Width = 70;
+
                 dgvAttendanceLog.Columns["TimeIn"].DefaultCellStyle.Format = "hh:mm tt";
                 dgvAttendanceLog.Columns["TimeOut"].DefaultCellStyle.Format = "hh:mm tt";
+
+                // header style
+                dgvAttendanceLog.EnableHeadersVisualStyles = false;
+                dgvAttendanceLog.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                dgvAttendanceLog.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+
+                dgvAttendanceLog.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dgvAttendanceLog.GridColor = Color.LightGray;
+                dgvAttendanceLog.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+
 
             }
             catch (Exception ex)
@@ -397,6 +416,12 @@ namespace BiometricApp
         private void UpdateStatus(int FAR)
         {
             Statuslabel.Text = String.Format("False Accept Rate (FAR) = {0}", FAR);
+        }
+
+        private void timerDateTime_Tick(object sender, EventArgs e)
+        {
+            dateTimeToday.Text =
+        DateTime.Now.ToString("dddd, MMMM dd, yyyy • hh:mm:ss tt");
         }
     }
 }
