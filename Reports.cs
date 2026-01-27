@@ -118,14 +118,6 @@ namespace BiometricApp
 
                     dgvAttendanceLog.DataSource = dt;
 
-                    Font cellFont = new Font("Century Gothic", 6, FontStyle.Regular);
-                    Font headerFont = new Font("Century Gothic", 6, FontStyle.Bold);
-
-                    dgvAttendanceLog.DefaultCellStyle.Font = cellFont;
-                    dgvAttendanceLog.ColumnHeadersDefaultCellStyle.Font = headerFont;
-                    dgvAttendanceLog.EnableHeadersVisualStyles = false;
-
-
                     dgvAttendanceLog.Columns["AttendanceID"].Visible = false;
                     dgvAttendanceLog.Columns["EmployeeNumber"].HeaderText = "ID";
                     dgvAttendanceLog.Columns["FullName"].HeaderText = "NAME";

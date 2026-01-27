@@ -120,6 +120,7 @@ namespace BiometricApp
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
+                ClearFields();
                 return;
             }
 
@@ -168,6 +169,7 @@ namespace BiometricApp
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error
                             );
+                            ClearFields();
                         }
                     }
                 }
