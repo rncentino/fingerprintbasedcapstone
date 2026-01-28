@@ -38,6 +38,7 @@ namespace BiometricApp
             timerDateTime.Start();
             LoadAttendanceLogs();
             StartCapture();
+            Statuslabel.Focus();
         }
 
         private void TouchTrackApp_FormClosed(object sender, FormClosedEventArgs e)
@@ -237,7 +238,7 @@ namespace BiometricApp
                                 // Check if 1 hour has passed
                                 if ((DateTime.Now - timeIn).TotalMinutes < 60)
                                 {
-                                    MessageBox.Show("You just timed in. Please try again after 1 hour.");
+                                    MessageBox.Show("You have just timed in. Please try again after one hour from your time-in.");
                                     return;
                                 }
 
@@ -341,6 +342,7 @@ ORDER BY a.TimeIn DESC";
                 dgvAttendanceLog.EnableHeadersVisualStyles = false;
                 dgvAttendanceLog.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
                 dgvAttendanceLog.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                dgvAttendanceLog.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(229, 229, 229);
 
                 dgvAttendanceLog.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
                 dgvAttendanceLog.GridColor = Color.LightGray;

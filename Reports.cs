@@ -9,6 +9,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace BiometricApp
 {
@@ -132,7 +134,8 @@ namespace BiometricApp
 
                     dgvAttendanceLog.EnableHeadersVisualStyles = false;
                     dgvAttendanceLog.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                    dgvAttendanceLog.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                    dgvAttendanceLog.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Bold);
+                    dgvAttendanceLog.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(229, 229, 229);
 
                     dgvAttendanceLog.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
                     dgvAttendanceLog.GridColor = Color.LightGray;
@@ -171,6 +174,11 @@ namespace BiometricApp
             {
                 Application.Exit();
             }
+        }
+
+        private void btnExportPDF_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

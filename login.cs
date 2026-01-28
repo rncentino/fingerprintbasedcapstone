@@ -90,6 +90,7 @@ namespace BiometricApp
 
         private void TouchTrackAppBtn_Click(object sender, EventArgs e)
         {
+
             this.Hide();
 
             using (TouchTrackApp touchTrackApp = new TouchTrackApp())
@@ -149,16 +150,10 @@ namespace BiometricApp
 
                         if (result == 1)
                         {
-                            // ✅ LOGIN SUCCESS
-                            dashboard dash = new dashboard();
-                            dash.FormClosed += (s, args) =>
-                            {
-                                this.Show();
-                                ClearFields();
-                            };
+                            dashboard dash = new dashboard(this);
                             dash.Show();
                             this.Hide();
-
+                            ClearFields();
                         }
                         else
                         {

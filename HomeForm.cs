@@ -181,6 +181,7 @@ namespace BiometricApp
                 dgvAttendanceLog.EnableHeadersVisualStyles = false;
                 dgvAttendanceLog.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
                 dgvAttendanceLog.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                dgvAttendanceLog.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(229, 229, 229);
 
                 dgvAttendanceLog.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
                 dgvAttendanceLog.GridColor = Color.LightGray;

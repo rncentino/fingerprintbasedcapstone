@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,14 @@ namespace BiometricApp
 {
     public partial class dashboard : Form
     {
-        public dashboard()
+        private Form _loginForm;
+
+        public dashboard(Form loginForm)
         {
             InitializeComponent();
+
+            _loginForm = loginForm;
+
             LoadForm(new HomeForm());
 
             SetupNavButton(btnHome);
@@ -110,6 +116,19 @@ namespace BiometricApp
             LoadForm(new SettingForm());
         }
 
+        public static class Session
+        {
+            public static string username { get; set; }
+            public static string password { get; set; }
+
+            public static void Clear()
+            {
+                username = null;
+                password = null;
+            }
+        }
+
+
         private void logoutbtn_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -120,11 +139,11 @@ namespace BiometricApp
 
             if (result == DialogResult.Yes)
             {
-                // End session and return to login
-                login loginForm = new login();
-                loginForm.Show();
+                // clear session (if you have one)
+                Session.Clear();
 
-                this.Close(); // Close dashboard
+                _loginForm.Show(); // show SAME login form
+                this.Close();      // close dashboard
             }
         }
 
@@ -151,6 +170,14 @@ namespace BiometricApp
         private void dashboard_Load(object sender, EventArgs e)
         {
             this.Activate();
+        }
+
+        private void dashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_loginForm != null && !_loginForm.Visible)
+            {
+                _loginForm.Show();
+            }
         }
     }
 }

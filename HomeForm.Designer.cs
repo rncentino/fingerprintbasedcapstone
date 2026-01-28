@@ -266,6 +266,7 @@
             this.dgvAttendanceLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAttendanceLog.Size = new System.Drawing.Size(480, 231);
             this.dgvAttendanceLog.TabIndex = 1013;
+            this.dgvAttendanceLog.TabStop = false;
             // 
             // label2
             // 

@@ -80,6 +80,8 @@ namespace BiometricApp
                     dgvEmployees.EnableHeadersVisualStyles = false;
                     dgvEmployees.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
                     dgvEmployees.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                    dgvEmployees.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(229, 229, 229);
+
 
                     dgvEmployees.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
                     dgvEmployees.GridColor = Color.LightGray;

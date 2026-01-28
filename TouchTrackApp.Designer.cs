@@ -72,6 +72,7 @@
             // 
             this.StatusText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.StatusText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StatusText.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.StatusText.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.StatusText.Location = new System.Drawing.Point(20, 313);
@@ -80,11 +81,13 @@
             this.StatusText.ReadOnly = true;
             this.StatusText.Size = new System.Drawing.Size(250, 202);
             this.StatusText.TabIndex = 29;
+            this.StatusText.TabStop = false;
             // 
             // Prompt
             // 
             this.Prompt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.Prompt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Prompt.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Prompt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Prompt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.Prompt.Location = new System.Drawing.Point(20, 20);
@@ -92,6 +95,7 @@
             this.Prompt.ReadOnly = true;
             this.Prompt.Size = new System.Drawing.Size(250, 15);
             this.Prompt.TabIndex = 28;
+            this.Prompt.TabStop = false;
             // 
             // fImage
             // 
@@ -130,19 +134,19 @@
             this.dgvAttendanceLog.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.dgvAttendanceLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAttendanceLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvAttendanceLog.Location = new System.Drawing.Point(300, 39);
+            this.dgvAttendanceLog.Location = new System.Drawing.Point(300, 48);
             this.dgvAttendanceLog.Name = "dgvAttendanceLog";
             this.dgvAttendanceLog.ReadOnly = true;
             this.dgvAttendanceLog.RowHeadersVisible = false;
             this.dgvAttendanceLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAttendanceLog.Size = new System.Drawing.Size(420, 481);
+            this.dgvAttendanceLog.Size = new System.Drawing.Size(420, 472);
             this.dgvAttendanceLog.TabIndex = 1007;
             // 
             // dateTimeToday
             // 
             this.dateTimeToday.AutoSize = true;
             this.dateTimeToday.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimeToday.Location = new System.Drawing.Point(300, 10);
+            this.dateTimeToday.Location = new System.Drawing.Point(300, 20);
             this.dateTimeToday.Name = "dateTimeToday";
             this.dateTimeToday.Size = new System.Drawing.Size(130, 19);
             this.dateTimeToday.TabIndex = 1009;
