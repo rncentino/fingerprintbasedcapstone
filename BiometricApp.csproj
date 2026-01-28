@@ -157,23 +157,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addactivity.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="addactivity.Designer.cs">
-      <DependentUpon>addactivity.cs</DependentUpon>
-    </Compile>
     <Compile Include="Reports.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
-    </Compile>
-    <Compile Include="biometricapp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="biometricapp.Designer.cs">
-      <DependentUpon>biometricapp.cs</DependentUpon>
     </Compile>
     <Compile Include="dashboard.cs">
       <SubType>Form</SubType>
@@ -199,18 +187,6 @@
     <Compile Include="eventDetails.Designer.cs">
       <DependentUpon>eventDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="events.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="events.Designer.cs">
-      <DependentUpon>events.cs</DependentUpon>
-    </Compile>
-    <Compile Include="fingerpintLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fingerpintLogin.Designer.cs">
-      <DependentUpon>fingerpintLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,39 +199,14 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="main.Designer.cs">
-      <DependentUpon>main.cs</DependentUpon>
-    </Compile>
     <Compile Include="capture.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="capture.Designer.cs">
       <DependentUpon>capture.cs</DependentUpon>
     </Compile>
-    <Compile Include="logattendance.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="logattendance.Designer.cs">
-      <DependentUpon>logattendance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="loginform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="loginform.Designer.cs">
-      <DependentUpon>loginform.cs</DependentUpon>
-    </Compile>
-    <Compile Include="mainhome.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="mainhome.Designer.cs">
-      <DependentUpon>mainhome.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Session.cs" />
     <Compile Include="SettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,26 +225,14 @@
     <Compile Include="TouchTrackApp.Designer.cs">
       <DependentUpon>TouchTrackApp.cs</DependentUpon>
     </Compile>
-    <Compile Include="updateActivity.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="updateActivity.Designer.cs">
-      <DependentUpon>updateActivity.cs</DependentUpon>
-    </Compile>
     <Compile Include="verify.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="verify.Designer.cs">
       <DependentUpon>verify.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="addactivity.resx">
-      <DependentUpon>addactivity.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="biometricapp.resx">
-      <DependentUpon>biometricapp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
@@ -307,32 +246,14 @@
     <EmbeddedResource Include="eventDetails.resx">
       <DependentUpon>eventDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="events.resx">
-      <DependentUpon>events.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="fingerpintLogin.resx">
-      <DependentUpon>fingerpintLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="main.resx">
-      <DependentUpon>main.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="capture.resx">
       <DependentUpon>capture.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="logattendance.resx">
-      <DependentUpon>logattendance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="loginform.resx">
-      <DependentUpon>loginform.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mainhome.resx">
-      <DependentUpon>mainhome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -352,9 +273,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TouchTrackApp.resx">
       <DependentUpon>TouchTrackApp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="updateActivity.resx">
-      <DependentUpon>updateActivity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="verify.resx">
       <DependentUpon>verify.cs</DependentUpon>

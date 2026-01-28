@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reports));
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -38,18 +39,19 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.totalDaysLbl = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.labelTotalRecords = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.dgvAttendanceLog = new System.Windows.Forms.DataGridView();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dgvAttendanceLog = new System.Windows.Forms.DataGridView();
+            this.closebtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAttendanceLog)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAttendanceLog)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -155,6 +157,16 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Period";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BiometricApp.Properties.Resources.calendar;
+            this.pictureBox1.Location = new System.Drawing.Point(25, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(251)))), ((int)(((byte)(231)))));
@@ -187,6 +199,16 @@
             this.label8.TabIndex = 1009;
             this.label8.Text = "Total Records";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::BiometricApp.Properties.Resources.crowd_of_users;
+            this.pictureBox2.Location = new System.Drawing.Point(25, 20);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 1008;
+            this.pictureBox2.TabStop = false;
+            // 
             // dgvAttendanceLog
             // 
             this.dgvAttendanceLog.AllowUserToAddRows = false;
@@ -204,25 +226,23 @@
             this.dgvAttendanceLog.Size = new System.Drawing.Size(480, 218);
             this.dgvAttendanceLog.TabIndex = 1011;
             // 
-            // pictureBox2
+            // closebtn
             // 
-            this.pictureBox2.Image = global::BiometricApp.Properties.Resources.crowd_of_users;
-            this.pictureBox2.Location = new System.Drawing.Point(25, 20);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 1008;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BiometricApp.Properties.Resources.calendar;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.closebtn.BackColor = System.Drawing.Color.Transparent;
+            this.closebtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("closebtn.BackgroundImage")));
+            this.closebtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.closebtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closebtn.FlatAppearance.BorderSize = 0;
+            this.closebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closebtn.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closebtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.closebtn.Location = new System.Drawing.Point(510, 0);
+            this.closebtn.Name = "closebtn";
+            this.closebtn.Size = new System.Drawing.Size(20, 20);
+            this.closebtn.TabIndex = 1015;
+            this.closebtn.TabStop = false;
+            this.closebtn.UseVisualStyleBackColor = false;
+            this.closebtn.Click += new System.EventHandler(this.closebtn_Click);
             // 
             // Reports
             // 
@@ -230,6 +250,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.ClientSize = new System.Drawing.Size(530, 530);
+            this.Controls.Add(this.closebtn);
             this.Controls.Add(this.dgvAttendanceLog);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
@@ -245,11 +266,11 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAttendanceLog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAttendanceLog)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,5 +294,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.DataGridView dgvAttendanceLog;
+        private System.Windows.Forms.Button closebtn;
     }
 }

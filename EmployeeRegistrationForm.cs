@@ -21,48 +21,81 @@ namespace BiometricApp
     {
         private DPFP.Template Template;
 
+        private string searchPlaceholder = "Search by ID, name, or role...";
+        private Color placeholderColor = Color.Gray;
+        private Color textColor = Color.Black;
+
+
         public EmployeeRegistrationForm()
         {
             InitializeComponent();
+            SetSearchPlaceholder();
 
         }
 
-        private void LoadEmployees()
+        private void SetSearchPlaceholder()
         {
-            string connStr = ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
+            SearchTxt.Text = searchPlaceholder;
+            SearchTxt.ForeColor = placeholderColor;
+        }
+
+        private void LoadEmployees(string keyword = "")
+        {
+            string connStr = ConfigurationManager
+                .ConnectionStrings["MyConn"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 try
                 {
-                    string query = @"SELECT 
-                                EmployeeID,
-                                EmployeeNumber,
-                                LastName,
-                                FirstName,
-                                Role
-                             FROM Employees";
+                    string query = @"
+                SELECT 
+                    EmployeeID,
+                    EmployeeNumber,
+                    LastName,
+                    FirstName,
+                    Role
+                FROM Employees
+                WHERE EmployeeNumber LIKE @key
+                   OR LastName LIKE @key
+                   OR FirstName LIKE @key
+                   OR Role LIKE @key
+                ORDER BY LastName, FirstName";
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@key", $"%{keyword}%");
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
                     dgvEmployees.DataSource = dt;
 
-                    dgvEmployees.Columns["EmployeeID"].Visible = false; // 👈 hidden but usable
-                    dgvEmployees.Columns["EmployeeNumber"].HeaderText = "Employee No";
-                    dgvEmployees.Columns["LastName"].HeaderText = "Last Name";
-                    dgvEmployees.Columns["FirstName"].HeaderText = "First Name";
+                    dgvEmployees.Columns["EmployeeID"].Visible = false;
+                    dgvEmployees.Columns["EmployeeNumber"].HeaderText = "ID";
+                    dgvEmployees.Columns["LastName"].HeaderText = "LAST NAME";
+                    dgvEmployees.Columns["FirstName"].HeaderText = "FIRST NAME";
+                    dgvEmployees.Columns["Role"].HeaderText = "ROLE";
+
+                    dgvEmployees.EnableHeadersVisualStyles = false;
+                    dgvEmployees.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                    dgvEmployees.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+
+                    dgvEmployees.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                    dgvEmployees.GridColor = Color.LightGray;
+                    dgvEmployees.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+
+                    
 
                     AddDeleteButton();
-
                 }
                 catch (Exception ex)
                 {
-                MessageBox.Show("Error loading data: " + ex.Message);
+                    MessageBox.Show("Error loading data: " + ex.Message);
                 }
             }
         }
+
 
         private void AddDeleteButton()
         {
@@ -70,7 +103,7 @@ namespace BiometricApp
 
             DataGridViewButtonColumn deleteBtn = new DataGridViewButtonColumn();
             deleteBtn.Name = "Delete";
-            deleteBtn.HeaderText = "Delete";
+            deleteBtn.HeaderText = "ACTION";
             deleteBtn.Text = "Delete";
             deleteBtn.UseColumnTextForButtonValue = true;
 
@@ -189,5 +222,27 @@ namespace BiometricApp
             LoadEmployees();
         }
 
+        private void SearchTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (SearchTxt.Text == searchPlaceholder) return;
+            LoadEmployees(SearchTxt.Text.Trim());
+        }
+
+        private void SearchTxt_Enter(object sender, EventArgs e)
+        {
+            if (SearchTxt.Text == searchPlaceholder)
+            {
+                SearchTxt.Text = "";
+                SearchTxt.ForeColor = textColor;
+            }
+        }
+
+        private void SearchTxt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchTxt.Text))
+            {
+                SetSearchPlaceholder();
+            }
+        }
     }
 }

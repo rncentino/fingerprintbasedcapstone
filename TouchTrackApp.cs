@@ -21,7 +21,6 @@ namespace BiometricApp
     {
         private DPFP.Capture.Capture Capturer;
         private DPFP.Verification.Verification Verificator;
-        private DPFP.Template Template;
 
         string conn = System.Configuration.ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
 
@@ -236,7 +235,7 @@ namespace BiometricApp
                                 }
 
                                 // Check if 1 hour has passed
-                                if ((DateTime.Now - timeIn).TotalMinutes < 1)
+                                if ((DateTime.Now - timeIn).TotalMinutes < 60)
                                 {
                                     MessageBox.Show("You just timed in. Please try again after 1 hour.");
                                     return;
@@ -403,14 +402,17 @@ ORDER BY a.TimeIn DESC";
 
         private void closebtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            DialogResult result = MessageBox.Show(
+            "Are you sure you want to exit?",
+            "Confirm Exit",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        );
 
-            using (login loginForm = new login())
+            if (result == DialogResult.Yes)
             {
-                loginForm.ShowDialog();
+                Application.Exit();
             }
-
-            this.Close();
         }
 
         private void UpdateStatus(int FAR)

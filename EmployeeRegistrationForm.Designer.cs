@@ -89,6 +89,9 @@
             this.SearchTxt.Name = "SearchTxt";
             this.SearchTxt.Size = new System.Drawing.Size(363, 20);
             this.SearchTxt.TabIndex = 1;
+            this.SearchTxt.TextChanged += new System.EventHandler(this.SearchTxt_TextChanged);
+            this.SearchTxt.Enter += new System.EventHandler(this.SearchTxt_Enter);
+            this.SearchTxt.Leave += new System.EventHandler(this.SearchTxt_Leave);
             // 
             // pictureBox1
             // 

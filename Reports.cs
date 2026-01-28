@@ -130,6 +130,15 @@ namespace BiometricApp
                     dgvAttendanceLog.Columns["TimeIn"].DefaultCellStyle.Format = "hh:mm tt";
                     dgvAttendanceLog.Columns["TimeOut"].DefaultCellStyle.Format = "hh:mm tt";
 
+                    dgvAttendanceLog.EnableHeadersVisualStyles = false;
+                    dgvAttendanceLog.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                    dgvAttendanceLog.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+
+                    dgvAttendanceLog.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                    dgvAttendanceLog.GridColor = Color.LightGray;
+                    dgvAttendanceLog.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+
+
                     int totalRecords = dgvAttendanceLog.AllowUserToAddRows
                         ? dgvAttendanceLog.Rows.Count - 1
                         : dgvAttendanceLog.Rows.Count;
@@ -149,7 +158,19 @@ namespace BiometricApp
             }
         }
 
+        private void closebtn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            "Are you sure you want to exit?",
+            "Confirm Exit",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        );
 
-
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
     }
 }
