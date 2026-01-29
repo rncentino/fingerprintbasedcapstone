@@ -61,7 +61,7 @@
             // 
             this.Statuslabel.AutoSize = true;
             this.Statuslabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.Statuslabel.Location = new System.Drawing.Point(17, 301);
+            this.Statuslabel.Location = new System.Drawing.Point(20, 20);
             this.Statuslabel.Name = "Statuslabel";
             this.Statuslabel.Size = new System.Drawing.Size(56, 13);
             this.Statuslabel.TabIndex = 30;
@@ -74,7 +74,7 @@
             this.StatusText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.StatusText.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.StatusText.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.StatusText.ForeColor = System.Drawing.Color.Black;
             this.StatusText.Location = new System.Drawing.Point(20, 313);
             this.StatusText.Multiline = true;
             this.StatusText.Name = "StatusText";

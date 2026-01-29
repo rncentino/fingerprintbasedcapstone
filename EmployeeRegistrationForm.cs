@@ -129,7 +129,7 @@ namespace BiometricApp
         private void DeleteEmployee(int employeeId)
         {
             DialogResult result = MessageBox.Show(
-                "Deleting this employee will also remove the fingerprint.\n\nContinue?",
+                "Deleting this employee will remove their fingerprint information and all related attendance records.\n\nContinue?",
                 "Confirm Delete",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
@@ -165,7 +165,7 @@ namespace BiometricApp
                 Template = template;
                 if(Template != null)
                 {
-                    MessageBox.Show("The fingerprint template is ready for fingerprint verification", "Fingerprint Enrollment");
+                    //MessageBox.Show("The fingerprint template is ready for fingerprint verification", "Fingerprint Enrollment");
                 }
                 else
                 {

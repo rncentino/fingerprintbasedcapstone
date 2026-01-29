@@ -90,15 +90,8 @@ namespace BiometricApp
 
         private void TouchTrackAppBtn_Click(object sender, EventArgs e)
         {
-
-            this.Hide();
-
-            using (TouchTrackApp touchTrackApp = new TouchTrackApp())
-            {
-                touchTrackApp.ShowDialog();
-            }
-
-            this.Close();
+            TouchTrackApp touchTrackApp = new TouchTrackApp();
+            touchTrackApp.ShowDialog();
         }
 
         public void ClearFields()

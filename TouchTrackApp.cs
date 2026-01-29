@@ -144,7 +144,6 @@ namespace BiometricApp
                 MakeReport("Failed to extract fingerprint features. Try again.");
                 return;
             }
-
             VerifyFingerprint(features);
         }
 
@@ -209,10 +208,10 @@ namespace BiometricApp
                     conn1.Open();
 
                     string checkQuery = @"
-                SELECT TOP 1 AttendanceID, TimeIn, TimeOut
-                FROM Attendance
-                WHERE EmployeeID = @EmployeeID
-                  AND AttendanceDate = CAST(GETDATE() AS DATE)";
+                        SELECT TOP 1 AttendanceID, TimeIn, TimeOut
+                        FROM Attendance
+                        WHERE EmployeeID = @EmployeeID
+                        AND AttendanceDate = CAST(GETDATE() AS DATE)";
 
                     using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn1))
                     {
@@ -244,9 +243,9 @@ namespace BiometricApp
 
                                 // TIME OUT
                                 string updateQuery = @"
-                            UPDATE Attendance
-                            SET TimeOut = GETDATE(), Status = 'OUT'
-                            WHERE AttendanceID = @AttendanceID";
+                                    UPDATE Attendance
+                                    SET TimeOut = GETDATE(), Status = 'OUT'
+                                    WHERE AttendanceID = @AttendanceID";
 
                                 using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn1))
                                 {
@@ -261,10 +260,10 @@ namespace BiometricApp
                                 reader.Close();
 
                                 string insertQuery = @"
-                            INSERT INTO Attendance
-                                (EmployeeID, AttendanceDate, TimeIn, Status)
-                            VALUES
-                                (@EmployeeID, CAST(GETDATE() AS DATE), GETDATE(), 'IN')";
+                                    INSERT INTO Attendance
+                                    (EmployeeID, AttendanceDate, TimeIn, Status)
+                                    VALUES
+                                    (@EmployeeID, CAST(GETDATE() AS DATE), GETDATE(), 'IN')";
 
                                 using (SqlCommand insertCmd = new SqlCommand(insertQuery, conn1))
                                 {
@@ -277,8 +276,6 @@ namespace BiometricApp
                         }
                     }
                 }
-
-
 
                 LoadAttendanceLogs(); // refresh DataGridView
             }
@@ -293,27 +290,26 @@ namespace BiometricApp
             }
         }
 
-
         private void LoadAttendanceLogs()
         {
             try
             {
                 string query = @"
-                SELECT
-    a.AttendanceID,
-    e.EmployeeNumber,
-    CONCAT(e.LastName, ', ', e.FirstName) AS FullName,
-    e.Role,
-    a.AttendanceDate,
-    a.TimeIn,
-    a.TimeOut,
-    a.Status
-FROM Attendance a
-LEFT JOIN Employees e
-    ON a.EmployeeID = e.EmployeeID
-WHERE a.AttendanceDate >= CAST(GETDATE() AS DATE)
-  AND a.AttendanceDate <  DATEADD(DAY, 1, CAST(GETDATE() AS DATE))
-ORDER BY a.TimeIn DESC";
+                    SELECT
+                    a.AttendanceID,
+                    e.EmployeeNumber,
+                    CONCAT(e.LastName, ', ', e.FirstName) AS FullName,
+                    e.Role,
+                    a.AttendanceDate,
+                    a.TimeIn,
+                    a.TimeOut,
+                    a.Status
+                    FROM Attendance a
+                    LEFT JOIN Employees e
+                    ON a.EmployeeID = e.EmployeeID
+                    WHERE a.AttendanceDate >= CAST(GETDATE() AS DATE)
+                    AND a.AttendanceDate <  DATEADD(DAY, 1, CAST(GETDATE() AS DATE))
+                    ORDER BY a.TimeIn DESC";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -348,17 +344,12 @@ ORDER BY a.TimeIn DESC";
                 dgvAttendanceLog.GridColor = Color.LightGray;
                 dgvAttendanceLog.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
 
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading attendance logs: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
-
 
         public void OnComplete(object Capture, string ReaderSerialNumber, DPFP.Sample Sample)
         {
@@ -405,7 +396,7 @@ ORDER BY a.TimeIn DESC";
         private void closebtn_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
-            "Are you sure you want to exit?",
+            "Are you sure you want to stop Attendance Scanning?",
             "Confirm Exit",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question
@@ -413,7 +404,7 @@ ORDER BY a.TimeIn DESC";
 
             if (result == DialogResult.Yes)
             {
-                Application.Exit();
+                this.Close();
             }
         }
 
@@ -425,7 +416,7 @@ ORDER BY a.TimeIn DESC";
         private void timerDateTime_Tick(object sender, EventArgs e)
         {
             dateTimeToday.Text =
-        DateTime.Now.ToString("dddd, MMMM dd, yyyy • hh:mm:ss tt");
+            DateTime.Now.ToString("dddd, MMMM dd, yyyy • hh:mm:ss tt");
         }
     }
 }

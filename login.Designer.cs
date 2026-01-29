@@ -214,6 +214,7 @@
             this.closebtn.Name = "closebtn";
             this.closebtn.Size = new System.Drawing.Size(20, 20);
             this.closebtn.TabIndex = 109;
+            this.closebtn.TabStop = false;
             this.closebtn.UseVisualStyleBackColor = false;
             this.closebtn.Click += new System.EventHandler(this.closebtn_Click);
             // 

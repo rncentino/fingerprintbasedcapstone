@@ -14,6 +14,21 @@ namespace BiometricApp
         [STAThread]
         static void Main()
         {
+            try
+            {
+                DatabaseInitializer.Initialize();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Startup Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new login());
