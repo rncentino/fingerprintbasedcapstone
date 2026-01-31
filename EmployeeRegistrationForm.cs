@@ -30,7 +30,6 @@ namespace BiometricApp
         {
             InitializeComponent();
             SetSearchPlaceholder();
-
         }
 
         private void SetSearchPlaceholder()
@@ -125,7 +124,7 @@ namespace BiometricApp
                 DeleteEmployee(employeeId);
             }
         }
-
+        
         private void DeleteEmployee(int employeeId)
         {
             DialogResult result = MessageBox.Show(
